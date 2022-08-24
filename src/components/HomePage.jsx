@@ -90,10 +90,9 @@ function HomePage() {
   return (
     <Container>
       <h2 className="homePage__title">Home</h2>
-      <div className="home__cart">
-           <div className="image">
-              <img src={selectedPlaylist.image} alt="selectedplaylist" />
-            </div>
+      <div className="image">
+          <img src={selectedPlaylist.image} alt="selectedplaylist" />
+      </div>
       </div>
       <div className="top_track">
         <h3>Recently played</h3>
@@ -101,17 +100,7 @@ function HomePage() {
         <>
           
           <div className="list">
-            <div className="header__row">
-              <div className="col">
-                <span>#</span>
-              </div>
-              <div className="col">
-                <span>TItre</span>
-              </div>
-              <div className="col">
-                <span>Album</span>
-              </div>
-
+            
               <div className="col">
                 <span>Artist</span>
               </div>
@@ -119,7 +108,7 @@ function HomePage() {
             <div className="tracks">
               {selectedPlaylist.tracks.map(
                 ({ id, name, artists, image, duration, album,context_uri,
-                  track_number }, index) => {
+                  track_number }) => {
                   return (
                     <div className="row" 
                           key={id}
