@@ -24,14 +24,14 @@ export default function Login() {
   return (
     <Container>
       <div className="soundhouse_first_page">
-      <h1 className="soundhouse_first_page_title"><span>Sound</span>House</h1>
-      <h3 className="soundhouse_first_page_subtitle">Yes, we play music</h3>
-      <button
-        onClick={handleClick}
-        className="soundhouse_first_page_login_button"
-      >
-        Login
-      </button>
+          <h1 className="soundhouse_first_page_title"><span>Sound</span>House</h1>
+          <h3 className="soundhouse_first_page_subtitle">Yes, we play music</h3>
+          <button
+            onClick={handleClick}
+            className="soundhouse_first_page_login_button"
+          >
+            Login with spotify
+          </button>
     </div>
     </Container>
     
@@ -39,24 +39,31 @@ export default function Login() {
 }
  
 const Container=styled.div`
-   
-    background-position:center;
-    background-cover:center center;
+    background-image:url(" href='https://fr.freepik.com/vecteurs/fond-pastel'>Fond pastel vecteur créé par Hello-Pixel - fr.freepik.com");
+    padding-top:35vh;
     text-align:center;
     .soundhouse_first_page{
-      button{
-        padding:10px 5px;
-        background-color:
-      }
-      h1 {
-        
-        color: black ;
-        .sound {
+      .soundhouse_first_page_title{
+        color: #08033f ;
+        font-size:300%;
+        span {
           color: #f0260f;
         }
       }
+      button{
+        padding:10px 5px;
+        background-color:#f0260f;
+        border-radius:50px;
+        color:white;
+        border-color:#f0260f;
+        cursor:pointer;
+        font-size:large;
+      }
+      
       h3{
-        color:black;
+        
+        color:#08033f;
+        font-size:150%;
       }
     }
     

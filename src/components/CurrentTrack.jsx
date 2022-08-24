@@ -55,7 +55,21 @@ export default CurrentTrack;
 const Container = styled.div`
   .track {
     display: flex;
+    track__image{
+      padding-top:2.5px;
+    }
     .track__info {
+      padding-left:5px;
+      color:white;
+      h4{
+        font-size:small;
+      }
+      h6{
+        margin-top:-15px;
+        font-size:smaller;
+        font-weight:normal;
+        
+      }
     }
   }
 `;

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {SidebarData} from '../data/SidebarData'
 import {NavLink} from 'react-router-dom'
 import { useStateProvider } from "../utils/StateProvider";
-import {IoPerson} from "react-icons/io5"
+import {IoPersonCircleOutline} from "react-icons/io5"
 
 
 function SidebarL() {
@@ -35,8 +35,8 @@ function SidebarL() {
       </div>
       
       <div className="name_user">
-          <IoPerson />
-          <span>{userInfo?.username}</span>
+          <IoPersonCircleOutline />
+          <div>{userInfo?.username}</div>
       </div>
       
     </Container>
@@ -68,20 +68,11 @@ const Container = styled.div`
       }
     }
     .name_user{
-      diplay:flex;
-      justify-content:space-between;
-      gap:20px;
-      width:50%;
-      background-color:#f0260f;
-      padding:10px 5px;
-      text-align:center;
-      margin-top:35px;
-      border-radius:50px;
+      display:flex;
+      margin-top:50vh;
+      gap:2px;
       svg{
-
-      }
-      span{
-        color:white;
+        font-size:large;
       }
     }
 

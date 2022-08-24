@@ -32,6 +32,21 @@ function Home() {
     };
     getUserInfo();
   }, [token, dispatch]);
+  useEffect(() => {
+    const getPlaybackState = async () => {
+      const { data } = await axios.get("https://api.spotify.com/v1/me/player", {
+        headers: {
+          Authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
+      });
+      dispatch({
+        type: reducerCases.SET_PLAYER_STATE,
+        playerState: data.is_playing,
+      });
+    };
+    getPlaybackState();
+  }, [dispatch, token]);
   return (
     <Container>
       
@@ -59,49 +74,49 @@ function Home() {
 }
 
 const Container = styled.div`
-  height:10vh;
+  height:100%;
   width:100%;
   display:flex;
   flex-direction:column;
   .main__part__home{
     display:flex;
-    height:75vh;
+    height:80vh;
     width:100%;
     .home_body{
       display:flex;
       width:75%;
       .home_body_center {
-            width: 75%;
-            height: 100vh;
-            overflow: scroll;
-      
-            ::-webkit-scrollbar {
-              width: 10px;
-            }
-      
-            ::-webkit-scrollbar-track {
-              background: white;
-            }
-      
-            ::-webkit-scrollbar-thumb {
-              background: #f0260f;
-              border-radius: 1px;
-            }
-      
-            ::-webkit-scrollbar-thumb:hover {
-              background: #f0260f;
-            }
-          }
-          .home_body_sidebarLeft {
-            background-color:  #f6fffe ;
-            width: 25%;
-            padding-top: 35px;
-            height:85vh;
-          }   
+        width: 75%;
+        height: 80vh;
+        overflow: scroll;
+  
+        ::-webkit-scrollbar {
+          width: 2px;
+        }
+  
+        ::-webkit-scrollbar-track {
+          background: white;
+        }
+  
+        ::-webkit-scrollbar-thumb {
+          background: #f0260f;
+          border-radius: 1px;
+        }
+  
+        ::-webkit-scrollbar-thumb:hover {
+          background: #f0260f;
+        }
+      }
+      .home_body_sidebarLeft {
+        background-color:  #f6fffe ;
+        width: 25%;
+        padding-top: 35px;
+        height:85vh;
+      }   
     }
     .home_body_sidebarRight {
         width: 25%;
-        height:90vh;
+        height:85vh;
         padding-top: 35px;
         
         background-color:#f6fffe;
@@ -124,10 +139,11 @@ const Container = styled.div`
         }
       }
   }
-  .footer{
-     margin-top:15vh;
+ .footer{
+     
      width:100%;
-     height:10vh;
+     height:12vh;
+     margin-top:9vh;
   }
 
 `;

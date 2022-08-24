@@ -31,7 +31,7 @@ function HomePage() {
           id: track.id,
           name: track.name,
           artists: track.artists.map((artist) => artist.name),
-          image: track.album.images[2].url,
+          image: track.album.images[1].url,
           duration: track.duration_ms,
           album: track.album.name,
           context_uri: track.album.uri,
@@ -69,13 +69,13 @@ function HomePage() {
       }
     );
     if (response.status === 204) {
-      const currentPlaying = {
+      const currentlyPlaying = {
         id,
         name,
         artists,
         image,
       };
-      dispatch({ type: reducerCases.SET_PLAYING, currentPlaying });
+      dispatch({ type: reducerCases.SET_PLAYING, currentlyPlaying });
       dispatch({ type: reducerCases.SET_PLAYER_STATE, playerState: true });
     } else {
       dispatch({ type: reducerCases.SET_PLAYER_STATE, playerState: true });
@@ -90,21 +90,17 @@ function HomePage() {
   return (
     <Container>
       <h2 className="homePage__title">Home</h2>
-      <div className="image">
+      {/* <div className="image">
           <img src={selectedPlaylist.image} alt="selectedplaylist" />
-      </div>
-      </div>
+      </div> */}
+      
       <div className="top_track">
-        <h3>Recently played</h3>
+        <h3>My favorites</h3>
         {selectedPlaylist && (
         <>
           
           <div className="list">
             
-              <div className="col">
-                <span>Artist</span>
-              </div>
-            </div>
             <div className="tracks">
               {selectedPlaylist.tracks.map(
                 ({ id, name, artists, image, duration, album,context_uri,
@@ -122,20 +118,18 @@ function HomePage() {
                               track_number
                             )
                           }>
-                      <div className="col">
-                        <span>{index + 1}</span>
-                      </div>
-                      <div className="col detail">
+                      
+                      <div className="col__detail">
                         <div className="image">
                           <img src={image} alt="track" />
                         </div>
                         <div className="info">
                           <span className="name">{name}</span>
-                          <span>{artists}</span>
+                          <span className="artist__name">({album})</span>
                         </div>
                       </div>
                       <div className="col">
-                        <span>{album}</span>
+                        <span>{artists}</span>
                       </div>
                       <div className="col">
                         <span>{msToMinutesAndSecons(duration)}</span>
@@ -159,29 +153,48 @@ const Container = styled.div`
   padding-left:10px;
   padding-top:25px;
   .top_track{
-    display: grid;
-    grid-template-columns: auto auto auto ;
+    .list{
+      .tracks{
+        display:flex;
+        align-items:center;
+        flex-wrap:wrap;
+        gap:25px;
+       
+        .row{
+          text-align:left;
+          padding-left:2.5px;
+          padding-right:2.5px;
+          padding-top:10px;
+          cursor:pointer;
+          font-size:smaller;
+          .col__detail{
+            .info{
+               .name{
+                 font-weight:bold;
+                 font-size:small;
+                 margin-right:1px;
+               }
+               .artist__name{
+
+               }
+            }
+          }
+
+        }
+        .row:hover{
+          background-color:#f0260f;
+          border-radius:5px;
+          color:white;
+          padding:10px 10px;
+        }
+      }
+    }
   }
   .homePage__title{
     color:#08033f;
   }
-  .home__cart {
-    display: flex;
-    height:30vh;
-    padding-top:25px;
-    padding-left:10px;
-    padding-bottom:25px;
-    justify-content: space-between;
-    background: #d9d9d933;
-    color:#08033f;
-    border-radius:20px;
-    homepage_cart_picture{
-      height:30vh;
-      img{
-        height:30vh;
-      }
-    }
-  }
+  
+  
 `;
 
 export default HomePage;
