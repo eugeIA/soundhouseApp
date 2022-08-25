@@ -3,12 +3,14 @@ import styled from "styled-components";
 import { useStateProvider } from "../utils/StateProvider";
 import { reducerCases } from "../utils/Constants";
 import { IoSearch } from "react-icons/io5";
+import SpotifyWebApi from "spotify-web-api-node";
 
 function Search() {
   const [searchInput, setSearchInput] = useState("");
   const [{ token }, dispatch] = useStateProvider();
   const [albums, setAlbums] = useState([]);
-
+  
+  const spotifyApi=new SpotifyWebApi({clientId:"4c73eec8758b4686ad313c2f504b9c75"})
   useEffect(() => {
     const search = async () => {
       const searchparams = {
@@ -35,13 +37,11 @@ function Search() {
           console.log(data);
           setAlbums(data.items);
         });
-      let getTracks=await fetch(
-          "https://api.spotify.com/v1/artists/"+ getArtistId + "/top-tracks" +"BR",searchparams
-      ) 
-       .then((response) => response.json())
+      spotifyApi.setAccessToken(token)
+      spotifyApi.searchTracks(searchInput)
+       .then((response) => console.log(response))
        .then (data=>console.log(data))
       console.log(getAlbums);
-      console.log(getTracks)
       
 
       dispatch({ type: reducerCases.SET_SEARCH, albums });
