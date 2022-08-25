@@ -153,6 +153,9 @@ const Container = styled.div`
   padding-left:10px;
   padding-top:25px;
   .top_track{
+    h3{
+      color:#08033f;
+    }
     .list{
       .tracks{
         display:flex;
