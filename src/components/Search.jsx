@@ -36,7 +36,7 @@ function Search() {
           setAlbums(data.items);
         });
       let getTracks=await fetch(
-          `https://api.spotify.com/v1/tracks/${getArtistId}`,searchparams
+          "https://api.spotify.com/v1/artists/"+ getArtistId + "/top-tracks" +"BR",searchparams
       ) 
        .then((response) => response.json())
        .then (data=>console.log(data))
