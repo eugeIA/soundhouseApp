@@ -5,7 +5,7 @@ import styled from "styled-components";
 export default function Login() {
   const handleClick = () => {
     const clientId = "4c73eec8758b4686ad313c2f504b9c75";
-    const redirectUrl = "https://bucolic-marzipan-fbfb75.netlify.app/";
+    const redirectUrl = "http://localhost:3001/";
     const apiUrl = "https://accounts.spotify.com/authorize";
     const scope = [
       "user-read-email",
@@ -30,7 +30,7 @@ export default function Login() {
             onClick={handleClick}
             className="soundhouse_first_page_login_button"
           >
-            Login with spotify
+            Login
           </button>
     </div>
     </Container>
@@ -40,7 +40,7 @@ export default function Login() {
  
 const Container=styled.div`
     background-image:url(" href='https://fr.freepik.com/vecteurs/fond-pastel'>Fond pastel vecteur créé par Hello-Pixel - fr.freepik.com");
-    padding-top:35vh;
+    padding-top:25vh;
     text-align:center;
     .soundhouse_first_page{
       .soundhouse_first_page_title{
@@ -53,15 +53,17 @@ const Container=styled.div`
       button{
         padding:10px 5px;
         background-color:#f0260f;
-        border-radius:50px;
+        border-radius:20px;
         color:white;
         border-color:#f0260f;
         cursor:pointer;
         font-size:large;
+        width:10vw;
+        height:10vh;
       }
       
       h3{
-        
+        font-weight:normal;
         color:#08033f;
         font-size:150%;
       }

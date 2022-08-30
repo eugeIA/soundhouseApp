@@ -9,6 +9,8 @@ export const initialState = {
   currentlyPlaying: null,
   playerState: false,
   track:[],
+  top_items:[],
+  
   
 };
 
@@ -62,6 +64,21 @@ const reducer = (state, action) => {
         ...state,
         selectedPlaylistId: action.selectedPlaylistId,
       };
+    case reducerCases.SET_CONTEXTURI:
+      return {
+        ...state,
+        contextUri: action.contextUri,
+      };
+    case reducerCases.SET_LIKEDURI:
+      return{
+        ...state,
+        uri:action.uri,
+      };
+    case reducerCases.SET_TOP_ITEMS:
+      return{
+        ...state,
+        top_items:action.top_items,
+      }
     default:
       return state;
   }

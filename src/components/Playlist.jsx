@@ -19,9 +19,9 @@ function Playlist() {
         }
       );
       const { items } = response.data;
-      const playlists = items.map(({ name, id }) => {
+      const playlists = items.map(({ name, id, images }) => {
        
-        return { name, id};
+        return { name, id, images};
       });
       console.log(playlists)
       console.log(response);
@@ -42,7 +42,7 @@ function Playlist() {
                      className="playlist__item">
                       <IoPlaySharp />
                    <span>{name}</span>
-                   <div></div>
+                   {/* <div><img src={images[2].url} alt="playlist_elements" /></div> */}
                  </li>;
         })}
       </ul>
@@ -54,10 +54,11 @@ const Container = styled.div`
   height:100%;
   display: flex;
   flex-direction: column;
-  background-color:#f6fffe;
+  background-color:white;
   margin-left:5px;
+  
   h3{
-     text-align: center;
+    
      color:#08033f;
   }
   ul {

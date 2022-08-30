@@ -1,4 +1,5 @@
 import {
+    IoHeart,
   IoHomeSharp,
   IoSearchSharp,
 
@@ -19,5 +20,10 @@ export const SidebarData=[
         icon:<IoSearchSharp />
         
     },
+    {
+        title:"Liked",
+        path:"/Liked",
+        icon:<IoHeart />
+    }
     
 ]

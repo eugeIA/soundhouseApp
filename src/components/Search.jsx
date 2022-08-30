@@ -2,15 +2,15 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useStateProvider } from "../utils/StateProvider";
 import { reducerCases } from "../utils/Constants";
-import { IoSearch } from "react-icons/io5";
-import SpotifyWebApi from "spotify-web-api-node";
+// import { IoSearch } from "react-icons/io5";
+// import SpotifyWebApi from "spotify-web-api-node";
 
 function Search() {
   const [searchInput, setSearchInput] = useState("");
   const [{ token }, dispatch] = useStateProvider();
   const [albums, setAlbums] = useState([]);
-  
-  const spotifyApi=new SpotifyWebApi({clientId:"4c73eec8758b4686ad313c2f504b9c75"})
+   console.log(setSearchInput)
+  // const spotifyApi=new SpotifyWebApi({clientId:"4c73eec8758b4686ad313c2f504b9c75"})
   useEffect(() => {
     const search = async () => {
       const searchparams = {
@@ -26,10 +26,11 @@ function Search() {
       )
         .then((response) => response.json())
         .then((data) => {
-          return data.artists.items[0].id;
+          console.log(data);
+          return data.artists.items[0].id
         });
       let getAlbums = await fetch(
-        "https://api.spotify.com/v1/artists/" + getArtistId + "/albums",
+        "https://api.spotify.com/v1/artists/" + getArtistId + "/albums" + "?include_groups=album&market=CA",
         searchparams
       )
         .then((response) => response.json())
@@ -37,11 +38,11 @@ function Search() {
           console.log(data);
           setAlbums(data.items);
         });
-      spotifyApi.setAccessToken(token)
-      spotifyApi.searchTracks(searchInput)
-       .then((response) => console.log(response))
-       .then (data=>console.log(data))
+      
+        
+        
       console.log(getAlbums);
+     
       
 
       dispatch({ type: reducerCases.SET_SEARCH, albums });
@@ -52,7 +53,7 @@ function Search() {
 
   return (
     <Container>
-      <div className="search__bar">
+      {/* <div className="search__bar">
         <IoSearch />
         <input
           type="search"
@@ -60,13 +61,17 @@ function Search() {
           //    onKeyPress={(e)=>}
           onChange={(e) => setSearchInput(e.target.value)}
         />
-      </div>
+      </div> */}
       <div className="search__result__body">
         {albums.map((album) => {
           return (
-            <div key={album.id}>
+            <div key={album.id} className="search__results__cart">
               <img src={album.images[2].url} alt="" className="albums__image" />
-              <h6 className="result__title">{album.name}</h6>
+              <div className="album__description">
+                  <h6 className="result__title">{album.name}</h6>
+                  <h6 className="parution__date">{album.release_date}</h6>
+              </div>
+              
             </div>
           );
         })}
@@ -102,12 +107,28 @@ const Container = styled.div`
     }
   }
   .search__result__body {
-    padding-top: 15px;
-    width: 100%;
-    display: grid;
+    padding-top:15px;
+    padding-right:5px;
+    padding-left:-1px;
+    display:grid;
     grid-template-columns: auto auto auto auto;
-
-    div {
+    width:100%;
+    gap:15px;
+    
+    .search__results__cart{
+        display:flex;
+        flex-direction:column;
+        gap:5px;
+        cursor:pointer;
+       .album__description{
+          display: flex;
+          flex-direction:column;
+          justify-content:center;
+          .parution__date{
+            margin-top:-20px;
+          }
+       }
     }
+    
   }
 `;
