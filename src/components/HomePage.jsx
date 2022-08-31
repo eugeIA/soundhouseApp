@@ -168,16 +168,17 @@ const Container = styled.div`
     display:flex;
     background-color:#D9D9D9;
     width:49vw;
-    border-radius:25px;
+    border-radius:10px;
     justify-content:space-between;
     padding-left:10px;
-   
+    marin-top:-5px;
+    height:40vh;
     .image__home__page__cart{
   
       img{
         height:40vh;
         width:15vw;
-        border-radius:0% 10% 10% 0%;
+        border-radius:0% 5% 5% 0%;
       }
     }
     .accroches{
@@ -220,7 +221,8 @@ const Container = styled.div`
     margin-bottom:15px;
     h3{
       color:#08033f;
-      
+      margin-bottom:-2px;
+      font-size:100%;
     }
     .list{
       .tracks{
@@ -270,17 +272,13 @@ const Container = styled.div`
           }
 
         }
-        .row:hover{
-          background-color:#f0260f;
-          border-radius:5px;
-          color:white;
-          padding:10px 10px;
-        }
+        
       }
     }
   }
   .homePage__title{
     color:#08033f;
+    font-size:125%;
   }
   
   

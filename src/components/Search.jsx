@@ -1,56 +1,74 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useStateProvider } from "../utils/StateProvider";
-import { reducerCases } from "../utils/Constants";
+// import { reducerCases } from "../utils/Constants";
 // import { IoSearch } from "react-icons/io5";
 // import SpotifyWebApi from "spotify-web-api-node";
 
 function Search() {
-  const [searchInput, setSearchInput] = useState("");
-  const [{ token }, dispatch] = useStateProvider();
-  const [albums, setAlbums] = useState([]);
-   console.log(setSearchInput)
-  // const spotifyApi=new SpotifyWebApi({clientId:"4c73eec8758b4686ad313c2f504b9c75"})
-  useEffect(() => {
-    const search = async () => {
-      const searchparams = {
-        method: "GET",
-        headers: {
-          Authorization: "Bearer " + token,
-          "Content-Type": "application/json",
-        },
-      };
-      let getArtistId = await fetch(
-        "https://api.spotify.com/v1/search?q=" + searchInput + "&type=artist",
-        searchparams
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          return data.artists.items[0].id
-        });
-      let getAlbums = await fetch(
-        "https://api.spotify.com/v1/artists/" + getArtistId + "/albums" + "?include_groups=album&market=CA",
-        searchparams
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          setAlbums(data.items);
-        });
+  // const [searchInput, setSearchInput] = useState("");
+  const [{ tracks }] = useStateProvider();
+  
+  // const [albums, setAlbums] = useState([]);
+  
+  //  console.log(setSearchInput)
+  //  console.log(setAlbums)
+  // // const spotifyApi=new SpotifyWebApi();
+  // useEffect(() => {
+  //   // const search=async () =>{
+  //   //   spotifyApi.setAccessToken(token)
+  //   //   let getSongs=spotifyApi.searchTracks(searchInput)
+  //   //     .then((response)=>response.json())
+  //   //     .then(
+  //   //       (data)=>{setAlbums(data.tracks.items)}
+  //   //     )
+  //   //    console.log(getSongs) 
+  //   // }
+   
+  //   // search()
+  //   const search = async () => {
+  //     const searchparams = {
+  //       method: "GET",
+  //       headers: {
+  //         Authorization: "Bearer " + token,
+  //         "Content-Type": "application/json",
+  //       },
+  //     };
+  //     let getArtistId = await fetch(
+  //       "https://api.spotify.com/v1/search?q=" + searchInput + "&type=artist",
+  //       searchparams
+  //     )
+  //       .then((response) => response.json())
+  //       .then((data) => {
+  //         console.log(data);
+  //         return data.artists.items[0].id
+  //       });
+  //     let getAlbums = await fetch(
+  //       "https://api.spotify.com/v1/artists/" + getArtistId + "/albums" + "?include_groups=album&market=CA",
+  //       searchparams
+  //     )
+  //       .then((response) => response.json())
+  //       .then((data) => {
+  //         console.log(data);
+  //         setAlbums(data.items);
+  //       });
       
         
         
-      console.log(getAlbums);
+  //     console.log(getAlbums);
      
       
 
-      dispatch({ type: reducerCases.SET_SEARCH, albums });
+  //     dispatch({ type: reducerCases.SET_SEARCH, albums });
+  //   };
+  //   search();
+  // }, [token, searchInput,dispatch]);
+  // console.log(albums);
+  const times = (ms) => {
+      const minutes = Math.floor(ms / 60000);
+      const seconds = ((ms % 60000) / 1000).toFixed(0);
+      return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
     };
-    search();
-  }, [token, searchInput, dispatch]);
-  console.log(albums);
-
   return (
     <Container>
       {/* <div className="search__bar">
@@ -63,13 +81,13 @@ function Search() {
         />
       </div> */}
       <div className="search__result__body">
-        {albums.map((album) => {
+        {tracks.map((track) => {
           return (
-            <div key={album.id} className="search__results__cart">
-              <img src={album.images[2].url} alt="" className="albums__image" />
+            <div key={track.id} className="search__results__cart">
+              <img src={track.album.images[2].url} alt="" className="albums__image" />
               <div className="album__description">
-                  <h6 className="result__title">{album.name}</h6>
-                  <h6 className="parution__date">{album.release_date}</h6>
+                  <h6 className="result__title">{track.name}</h6>
+                  <h6 className="parution__date">{times(track.duration_ms)}</h6>
               </div>
               
             </div>
@@ -108,7 +126,7 @@ const Container = styled.div`
   }
   .search__result__body {
     padding-top:15px;
-    padding-right:5px;
+    padding-right:15px;
     padding-left:-1px;
     display:grid;
     grid-template-columns: auto auto auto auto;
@@ -120,10 +138,15 @@ const Container = styled.div`
         flex-direction:column;
         gap:5px;
         cursor:pointer;
+      
+        img{
+          border-radius:10px;
+        }
        .album__description{
           display: flex;
           flex-direction:column;
           justify-content:center;
+          margin-top:-15px;
           .parution__date{
             margin-top:-20px;
           }

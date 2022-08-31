@@ -41,29 +41,29 @@ function Artists(){
                 <li>
                     <img src={ed_sheeran} alt="" />
                     <div className="description">
-                        <h3>Ed Sheeran</h3>
+                        <h4>Ed Sheeran</h4>
                         <p>200 Millions followers</p>
                     </div>
                 </li>
                 <li>
                     <img src={sia} alt="" />
                     <div className="description">
-                        <h3>Sia fulter</h3>
+                        <h4>Sia fulter</h4>
                         <p>195 Millions followers</p>
                     </div>
                 </li>
                 <li>
                     <img src={eminem} alt="" />
                     <div className="description">
-                        <h3>Eminem</h3>
+                        <h4>Eminem</h4>
                         <p>150 Millions followers</p>
                     </div>
                 </li>
                 <li>
                     <img src={maroon} alt="" />
                     <div className="description">
-                        <h3>Maroon 5</h3>
-                        <p>1250 Millions followers</p>
+                        <h4>Maroon 5</h4>
+                        <p>125 Millions followers</p>
                     </div>
                 </li>
             </ul>
@@ -75,27 +75,29 @@ function Artists(){
 
 const Container=styled.div`
      .artists__bar__title{
-        margin-bottom:30px;
+        margin-bottom:25px;
         text-align:center;
      }
      .top__artists__list{
         list-style-type: none;
-        
+        padding-left:75px;
         li{
            display:flex;
-           margin-top:10px;
+           margin-top:-5px;
            img{
-            height:10vh;
+            align-self:center;
+            height:7.5vh;
             border-radius:50px;
            }
            .description{
               padding-left:15px;
-              h3{
+              align-self:center;
+              h4{
                 font-size:small;
               }
               p{
                 font-size:smaller;
-                margin-top:-5px;
+                margin-top:-10px;
               }
            }
         }

@@ -10,7 +10,7 @@ export const initialState = {
   playerState: false,
   track:[],
   top_items:[],
-  
+  tracks:[],
   
 };
 
@@ -78,6 +78,11 @@ const reducer = (state, action) => {
       return{
         ...state,
         top_items:action.top_items,
+      }
+    case reducerCases.SET_SEARCH:
+      return{
+        ...state,
+        tracks:action.tracks,
       }
     default:
       return state;

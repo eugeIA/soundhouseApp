@@ -44,7 +44,7 @@ const Container = styled.div`
     padding-left:30px;
     
     .sidebar__body{
-      margin-top:20px;
+      margin-top:5px;
      
       div{
        
@@ -53,7 +53,7 @@ const Container = styled.div`
          
           cursor:pointer;
           text-decoration:none;
-          font-size:large;
+          font-size:100%;
           margin-bottom:20px;
           
         }
